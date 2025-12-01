@@ -18,6 +18,14 @@ const bankService = {
             throw new Error("Usuário não encontrado");
         }
 
+         if(sender.balance < amount){
+            throw new Error("Saldo insuficiente");
+        }
+
+        if (amount <= 0) {
+            throw new Error("Valor inválido");
+        }
+
         sender.balance -= amount;
         receiver.balance += amount;
 
@@ -26,7 +34,11 @@ const bankService = {
             newSenderBalance: sender.balance,
             message: "Transferência realizada"
         };
+   
     }
+
+    
 };
 
-module.exports = bankService;
+module.exports = {bankService , users};
+
